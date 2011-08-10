@@ -1,0 +1,11 @@
+--- origsrc/svn/src/core/utils.cpp	2011-08-10 15:16:48.000000000 -0500
++++ src/svn/src/core/utils.cpp	2011-08-10 16:19:10.320297700 -0500
+@@ -230,7 +230,7 @@ const char *GetLAVCSampleFormatName(AVSa
+ template<class T> static void safe_aligned_reallocz(T *&ptr, size_t old_size, size_t new_size) {
+ 	void *newalloc = av_mallocz(new_size);
+ 	if (newalloc) {
+-		memcpy(newalloc, ptr, min(old_size, new_size));
++		memcpy(newalloc, ptr, std::min(old_size, new_size));
+ 	}
+ 	av_free(ptr);
+ 	ptr = static_cast<T*>(newalloc);

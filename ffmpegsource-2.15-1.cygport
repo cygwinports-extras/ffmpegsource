@@ -1,0 +1,18 @@
+SVN_URI="http://ffmpegsource.googlecode.com/svn"
+SVN_TAG="ffms-${PV}"
+inherit svn
+
+HOMEPAGE="http://code.google.com/p/ffmpegsource/"
+
+PATCH_URI="
+	2.15-am-silent-rules.patch
+	2.15-cygwin.patch
+	2.15-gcc45.patch
+"
+
+PKG_NAMES="${PN} libffms2_2 libffms2-devel"
+ffmpegsource_CONTENTS="usr/bin/*.exe usr/share/"
+libffms2_2_CONTENTS="usr/bin/cygffms2-2.dll"
+libffms2_devel_CONTENTS="usr/include/ usr/lib/"
+
+CYGCONF_ARGS="--enable-shared"

@@ -1,0 +1,26 @@
+--- origsrc/svn/configure.in	2011-08-10 15:16:49.000000000 -0500
++++ src/svn/configure.in	2011-08-10 16:24:22.307142300 -0500
+@@ -17,11 +17,6 @@ AC_PROG_CC
+ AC_PROG_CXX
+ LT_INIT([static disable-shared])
+ 
+-if echo "$host" | $GREP "cygwin" >/dev/null 2>&1 && test "$enable_shared" = "yes"; then
+-    AC_MSG_ERROR([Shared build is broken on cygwin.
+-                  Please remove --enable-shared from your configure options or build with another --host.])
+-fi
+-
+ AC_FUNC_ALLOCA
+ if ! test "x$ac_cv_working_alloca_h" = "xyes" && ! test "x$ac_cv_func_alloca_works" = "xyes"; then
+     AC_MSG_FAILURE([ffms2 requires alloca to compile])
+@@ -108,8 +104,9 @@ CPPFLAGS="$CPPFLAGS -D_FILE_OFFSET_BITS=
+ LIBS="$_LIBS"
+ AC_MSG_RESULT($bsymbolic)
+ 
+-if echo "$host" | $GREP "mingw" >/dev/null 2>&1; then
++case "$host_os" in cygwin*|mingw*)
+     LTUNDEF="-no-undefined"
+-fi
++    ;;
++esac
+ AC_SUBST([LTUNDEF])
+ 
