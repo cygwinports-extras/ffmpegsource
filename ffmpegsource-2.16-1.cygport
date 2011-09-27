@@ -5,9 +5,8 @@ inherit svn
 HOMEPAGE="http://code.google.com/p/ffmpegsource/"
 
 PATCH_URI="
-	2.15-am-silent-rules.patch
-	2.15-cygwin.patch
-	2.15-gcc45.patch
+	2.16-am-silent-rules.patch
+	2.16-cygwin.patch
 "
 
 PKG_NAMES="${PN} libffms2_2 libffms2-devel"
