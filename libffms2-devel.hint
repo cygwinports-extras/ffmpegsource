@@ -1,5 +1,5 @@
 category: Audio Video
-requires: libffms2_2 libavcodec-devel libavformat-devel libavutil-devel libstdc++6-devel libswscale-devel zlib-devel
+requires: libffms2_2 zlib-devel
 external-source: ffmpegsource
 sdesc: "FFmpeg wrapper library (development)"
 ldesc: "FFmpegSource (usually known as FFMS or FFMS2) is a 

@@ -1,5 +1,5 @@
 category: Audio Video
-requires: libavcodec52 libavformat52 libavutil50 libgcc1 libstdc++6 libswscale0 zlib0
+requires: libavcodec53 libavformat53 libavutil51 libgcc1 libstdc++6 libswscale2 zlib0
 external-source: ffmpegsource
 sdesc: "FFmpeg wrapper library (runtime)"
 ldesc: "FFmpegSource (usually known as FFMS or FFMS2) is a 
