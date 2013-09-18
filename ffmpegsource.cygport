@@ -4,7 +4,7 @@ inherit svn
 
 NAME="ffmpegsource"
 VERSION=2.17
-RELEASE=2
+RELEASE=3
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg media indexer"
 DESCRIPTION="FFmpegSource (usually known as FFMS or FFMS2) is a cross-platform
@@ -22,7 +22,7 @@ PATCH_URI="
 	2.16-cygwin.patch
 "
 
-PKG_NAMES="${PN} libffms2_2 libffms2-devel"
+PKG_NAMES="${NAME} libffms2_2 libffms2-devel"
 ffmpegsource_CONTENTS="usr/bin/*.exe usr/share/"
 libffms2_2_SUMMARY="FFmpeg wrapper library (runtime)"
 libffms2_2_CONTENTS="usr/bin/cygffms2-2.dll"
