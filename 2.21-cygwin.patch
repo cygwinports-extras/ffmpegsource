@@ -1,0 +1,48 @@
+--- origsrc/ffms2-2.21/configure.ac	2015-05-16 12:16:02.000000000 -0500
++++ src/ffms2-2.21/configure.ac	2015-05-19 00:31:49.156166000 -0500
+@@ -48,11 +48,6 @@ AS_CASE([$host],
+ 
+ AC_PROG_LIBTOOL
+ 
+-if echo "$host" | $GREP "cygwin" >/dev/null 2>&1 && test "$enable_shared" = "yes"; then
+-    AC_MSG_ERROR([Shared build is broken on cygwin.
+-                  Please remove --enable-shared from your configure options or build with another --host.])
+-fi
+-
+ dnl Workaround for a bug in libtool
+ dnl The windows libtool uses a file magic checking method that only accepts
+ dnl dynamic libraries. Change it for libtool's alternative checking method.
+@@ -188,9 +183,11 @@ CPPFLAGS="$_CPPFLAGS"
+ LIBS="$_LIBS"
+ AC_MSG_RESULT($bsymbolic)
+ 
+-if echo "$host" | $GREP "mingw" >/dev/null 2>&1; then
++case "$host_os" in
++cygwin*|mingw*)
+     LTUNDEF="-no-undefined"
+-fi
++    ;;
++esac
+ AC_SUBST([LTUNDEF])
+ 
+ AC_CONFIG_FILES([
+--- origsrc/ffms2-2.21/src/core/ffms.cpp	2015-05-16 12:16:02.000000000 -0500
++++ src/ffms2-2.21/src/core/ffms.cpp	2015-05-19 00:42:12.480318100 -0500
+@@ -353,12 +353,12 @@ FFMS_API(int) FFMS_DefaultAudioFilename(
+ 	std::string s = static_cast<char *>(Private);
+ 
+ 	ReplaceString(s, "%sourcefile%", SourceFile);
+-	ReplaceString(s, "%trackn%", std::to_string(Track));
++	ReplaceString(s, "%trackn%", IntToStr(Track));
+ 	ReplaceString(s, "%trackzn%", IntToStr(Track, 2));
+-	ReplaceString(s, "%samplerate%", std::to_string(AP->SampleRate));
+-	ReplaceString(s, "%channels%", std::to_string(AP->Channels));
+-	ReplaceString(s, "%bps%", std::to_string(AP->BitsPerSample));
+-	ReplaceString(s, "%delay%", std::to_string(static_cast<int>(AP->FirstTime)));
++	ReplaceString(s, "%samplerate%", IntToStr(AP->SampleRate));
++	ReplaceString(s, "%channels%", IntToStr(AP->Channels));
++	ReplaceString(s, "%bps%", IntToStr(AP->BitsPerSample));
++	ReplaceString(s, "%delay%", IntToStr(static_cast<int>(AP->FirstTime)));
+ 
+ 	if (FileName)
+ 		strcpy(FileName, s.c_str());

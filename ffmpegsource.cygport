@@ -1,10 +1,6 @@
-SVN_URI="http://ffmpegsource.googlecode.com/svn"
-SVN_TAG="ffms-${PV}"
-inherit svn
-
 NAME="ffmpegsource"
-VERSION=2.17
-RELEASE=3
+VERSION=2.21
+RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="FFmpeg media indexer"
 DESCRIPTION="FFmpegSource (usually known as FFMS or FFMS2) is a cross-platform
@@ -14,18 +10,17 @@ you an easy, convenient way to say 'open and decompress this media file for me,
 I don't care how you do it' and get frame- and sample-accurate access (usually),
 without having to bother with the sometimes less than straightforward and less
 than perfectly documented FFmpeg API."
-HOMEPAGE="http://code.google.com/p/ffmpegsource/"
-
+HOMEPAGE="https://github.com/FFMS/ffms2"
+SRC_URI="${HOMEPAGE}/archive/${VERSION}/ffms2-${VERSION}.tar.gz"
+SRC_DIR="ffms2-${VERSION}"
 PATCH_URI="
-	mirror://portage/media-libs/ffmpegsource/files/ffmpegsource-2.17-ffmpeg.patch
-	2.16-am-silent-rules.patch
-	2.16-cygwin.patch
+	2.21-cygwin.patch
 "
 
-PKG_NAMES="${NAME} libffms2_2 libffms2-devel"
+PKG_NAMES="${NAME} libffms2_4 libffms2-devel"
 ffmpegsource_CONTENTS="usr/bin/*.exe usr/share/"
-libffms2_2_SUMMARY="FFmpeg wrapper library (runtime)"
-libffms2_2_CONTENTS="usr/bin/cygffms2-2.dll"
+libffms2_4_SUMMARY="FFmpeg wrapper library (runtime)"
+libffms2_4_CONTENTS="usr/bin/cygffms2-4.dll"
 libffms2_devel_SUMMARY="FFmpeg wrapper library (development)"
 libffms2_devel_CONTENTS="usr/include/ usr/lib/"
 
